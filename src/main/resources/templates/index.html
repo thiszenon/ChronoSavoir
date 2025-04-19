@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SkillTime - Mes Compétences</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h1 class="text-center mb-4">📚 SkillTime</h1>
+
+    <!-- Bouton Ajouter -->
+    <a href="/add-skill" class="btn btn-primary mb-4">+ Ajouter une Compétence</a>
+
+    <!-- Liste des Compétences -->
+    <div class="card shadow">
+        <div class="card-header bg-white">
+            <h5>Mes Compétences</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Compétence</th>
+                    <th>Temps passé</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="skill : ${skills}">
+                    <td th:text="${skill.titre}">Spring Boot</td>
+                    <td th:text="${#temporals.formatDuration(skill.tempsApprentissageMilliseconds)}">2h30</td>
+                    <td>
+                        <a th:href="@{/skill-detail/{id}(id=${skill.id})" class="btn btn-sm btn-outline-success">Démarrer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
